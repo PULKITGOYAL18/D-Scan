@@ -1,0 +1,131 @@
+/* App.css - Clean, Touch-First Professional Styling (Pure Light Theme) */
+
+:root {
+  --primary: #1e40af;
+  --primary-hover: #1d4ed8;
+  --bg-app: #f8fafc;
+  --bg-card: #ffffff;
+  --bg-card-subtle: #f1f5f9;
+  --text-primary: #0f172a;
+  --text-secondary: #64748b;
+  --border-color: #e2e8f0;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: var(--bg-app);
+  color: var(--text-primary);
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Prevent accidental page scrolling when dragging crop handles on mobile */
+.touch-crop-container {
+  touch-action: none;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+/* Large Touch Crop Handle: 48px size for effortless finger manipulation */
+.large-crop-handle {
+  width: 48px;
+  height: 48px;
+  border-radius: 9999px;
+  background-color: #2563eb;
+  border: 3.5px solid #ffffff;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  font-size: 11px;
+  font-weight: 800;
+  cursor: grab;
+  touch-action: none;
+  transform: translate(-50%, -50%);
+  transition: transform 0.1s ease;
+}
+
+.large-crop-handle:active {
+  cursor: grabbing;
+  transform: translate(-50%, -50%) scale(1.25);
+  background-color: #1d4ed8;
+}
+
+/* Large button touch targets (min 48px height) */
+.btn-large {
+  min-height: 48px;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+  font-size: 0.95rem;
+  font-weight: 700;
+  border-radius: 1rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.btn-large:active {
+  transform: scale(0.98);
+}
+
+/* Movable Institute Overlay Handle & Box */
+.overlay-touch-item {
+  touch-action: none;
+  user-select: none;
+  -webkit-user-select: none;
+  cursor: grab;
+  position: absolute;
+}
+
+.overlay-touch-item:active {
+  cursor: grabbing;
+}
+
+.overlay-selected {
+  outline: 2.5px solid #2563eb;
+  outline-offset: 4px;
+  box-shadow: 0 8px 24px rgba(37, 99, 235, 0.35);
+  border-radius: 6px;
+}
+
+/* Touch Control Toolbar Buttons */
+.touch-toolbar-btn {
+  min-height: 44px;
+  min-width: 44px;
+  padding: 0.6rem 1rem;
+  border-radius: 0.85rem;
+  font-size: 0.85rem;
+  font-weight: 700;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  background-color: #ffffff;
+  border: 1.5px solid var(--border-color);
+  color: var(--text-primary);
+}
+
+.touch-toolbar-btn:active {
+  transform: scale(0.95);
+  background-color: var(--bg-card-subtle);
+}
+
+/* Fixed crop framing zoom & drag container */
+.fixed-frame-box {
+  border: 2.5px dashed #3b82f6;
+  box-shadow: 0 0 0 9999px rgba(0, 0, 0, 0.6);
+  pointer-events: none;
+}
+
+/* Clean Touch Slider for Brightness & Contrast */
+input[type="range"] {
+  accent-color: #2563eb;
+  cursor: pointer;
+}

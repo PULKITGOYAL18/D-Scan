@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-eval' 'unsafe-inline' blob:; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; connect-src 'self' blob: data:; font-src 'self' data:; media-src 'self' blob:; worker-src 'self' blob:;" />
+    
+    <title>D-Scan - Scan, Enhance & Brand Documents in One Place.</title>
+    <meta name="description" content="D-Scan: Scan, Enhance & Brand Documents in One Place. Offline document scanner PWA for colleges, institutes, offices, and students." />
+    <meta name="theme-color" content="#1e40af" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <meta name="apple-mobile-web-app-title" content="D-Scan" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="icon" type="image/svg+xml" href="/icon.svg" />
+    
+    <meta property="og:title" content="D-Scan - Scan, Enhance & Brand Documents in One Place." />
+    <meta property="og:description" content="D-Scan: Scan, Enhance & Brand Documents in One Place. Offline document scanner PWA for colleges, institutes, offices, and students." />
+    <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <!-- Self-hosted local OpenCV.js (100% offline & local) -->
+    <script async src="/opencv.js" type="text/javascript" id="opencv-script"></script>
+    <script>
+      window.isOpenCvReady = false;
+      function checkOpenCv() {
+        if (typeof cv !== 'undefined' && cv.Mat) {
+          window.isOpenCvReady = true;
+          window.dispatchEvent(new Event('opencv-ready'));
+        }
+      }
+      var opencvScript = document.getElementById('opencv-script');
+      if (opencvScript) {
+        opencvScript.onload = function() {
+          if (typeof cv !== 'undefined') {
+            if (cv.onRuntimeInitialized) {
+              var prevInit = cv.onRuntimeInitialized;
+              cv.onRuntimeInitialized = function() {
+                if (prevInit) prevInit();
+                window.isOpenCvReady = true;
+                window.dispatchEvent(new Event('opencv-ready'));
+              };
+            } else {
+              window.isOpenCvReady = true;
+              window.dispatchEvent(new Event('opencv-ready'));
+            }
+          }
+        };
+        opencvScript.onerror = function() {
+          console.warn('Local OpenCV.js not initialized; using native JavaScript Computer Vision engine fallback.');
+        };
+      }
+    </script>
+  </head>
+  <body class="bg-slate-50 text-slate-900 select-none antialiased min-h-screen">
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

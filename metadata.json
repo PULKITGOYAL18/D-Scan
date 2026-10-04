@@ -1,0 +1,8 @@
+{
+  "name": "D-Scan",
+  "description": "D-Scan: Scan, Enhance & Brand Documents in One Place. Offline document scanner PWA for colleges, institutes, offices, and students.",
+  "requestFramePermissions": [
+    "camera"
+  ],
+  "majorCapabilities": []
+}
